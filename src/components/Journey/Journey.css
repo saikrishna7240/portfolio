@@ -1,0 +1,292 @@
+.journey-section {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.journey-interactive-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+/* Steps Track */
+.journey-steps-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.milestone-step-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 1.35rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.milestone-step-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.milestone-step-btn:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-medium);
+  transform: translateX(4px);
+}
+
+.milestone-step-btn.is-active {
+  background-color: rgba(16, 245, 155, 0.04);
+  border-color: var(--accent-dim-border);
+}
+
+.milestone-step-btn.is-active::before {
+  opacity: 1;
+}
+
+.step-left {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.step-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.step-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.step-period {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.step-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.step-tag-pill {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+}
+
+.step-chevron {
+  color: var(--text-muted);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.milestone-step-btn.is-active .step-chevron {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* Detail Card */
+.journey-detail-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 6.5rem;
+  overflow: hidden;
+}
+
+.detail-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-phase-tag {
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.detail-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.detail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.65rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.detail-card-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-description {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.detail-takeaway-box {
+  background-color: rgba(16, 245, 155, 0.03);
+  border: 1px solid var(--accent-dim-border);
+  border-radius: var(--radius-xs);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.takeaway-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.takeaway-text {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.detail-tags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tags-header {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.detail-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.detail-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.detail-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.75rem;
+  background-color: var(--bg-tertiary);
+  border-top: 1px solid var(--border-subtle);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-spec {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.footer-nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.step-nav-btn {
+  padding: 0.35rem 0.75rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.step-nav-btn:hover:not(:disabled) {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.step-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .journey-interactive-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .journey-detail-card {
+    position: static;
+  }
+}

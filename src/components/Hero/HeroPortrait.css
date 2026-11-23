@@ -1,0 +1,320 @@
+.hero-portrait-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+/* Ambient glow directly behind portrait */
+.portrait-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(16, 245, 155, 0.14) 0%, rgba(10, 11, 14, 0) 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+  animation: portraitGlowBreath 6s ease-in-out infinite alternate;
+}
+
+@keyframes portraitGlowBreath {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+/* 3D Motion Frame Card with Exact 571/767 Aspect Ratio */
+.hero-portrait-card {
+  position: relative;
+  width: 100%;
+  max-width: 410px;
+  aspect-ratio: 571 / 767;
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 24px 60px -10px rgba(0, 0, 0, 0.8),
+    0 0 30px -5px rgba(16, 245, 155, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  z-index: 1;
+  animation: portraitFloat 6s ease-in-out infinite alternate;
+}
+
+.hero-portrait-card:hover {
+  border-color: rgba(16, 245, 155, 0.4);
+  box-shadow: 
+    0 30px 70px -10px rgba(0, 0, 0, 0.9),
+    0 0 40px -5px rgba(16, 245, 155, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation-play-state: paused;
+}
+
+@keyframes portraitFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-6px); }
+}
+
+/* Precision Corner Reticles */
+.portrait-corner-reticle {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  pointer-events: none;
+  z-index: 10;
+  line-height: 1;
+  opacity: 0.85;
+  text-shadow: 0 0 8px rgba(16, 245, 155, 0.6);
+}
+
+.reticle-tl { top: 12px; left: 14px; }
+.reticle-tr { top: 12px; right: 14px; }
+.reticle-bl { bottom: 12px; left: 14px; }
+.reticle-br { bottom: 12px; right: 14px; }
+
+/* Top Header Bar */
+.portrait-header-bar {
+  position: absolute;
+  top: 10px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem;
+  background: rgba(10, 11, 14, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xs);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.header-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.live-status-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.portrait-name {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.portrait-role-badge {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.4rem;
+  background-color: rgba(16, 245, 155, 0.12);
+  color: var(--accent);
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+/* Image Container */
+.portrait-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0b0c10;
+}
+
+.portrait-actual-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(1.002);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s ease;
+  filter: contrast(1.03) brightness(0.98);
+}
+
+.hero-portrait-card:hover .portrait-actual-image {
+  transform: scale(1.025);
+  filter: contrast(1.05) brightness(1.01);
+}
+
+/* Bottom vignette */
+.portrait-bottom-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 11, 14, 0.25) 0%,
+    rgba(10, 11, 14, 0) 30%,
+    rgba(10, 11, 14, 0.15) 65%,
+    rgba(10, 11, 14, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Floating Chips */
+.portrait-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(15, 17, 21, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  z-index: 6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease;
+  user-select: none;
+}
+
+.portrait-chip:hover {
+  border-color: rgba(16, 245, 155, 0.4);
+  background: rgba(20, 23, 29, 0.98);
+}
+
+.chip-status {
+  bottom: 14px;
+  left: 14px;
+}
+
+.chip-tech {
+  bottom: 14px;
+  right: 14px;
+}
+
+.chip-beacon-wrap {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-beacon-core {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.chip-beacon-pulse {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0.6;
+  animation: chipPulseAnim 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes chipPulseAnim {
+  75%, 100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.chip-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-xs);
+  background: rgba(16, 245, 155, 0.1);
+  border: 1px solid rgba(16, 245, 155, 0.2);
+}
+
+.chip-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.chip-sub {
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.chip-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Tablet & Mobile Breakpoints */
+@media (max-width: 900px) {
+  .hero-portrait-card {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-portrait-card {
+    max-width: 310px;
+  }
+  .chip-tech {
+    display: none;
+  }
+  .chip-status {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+  .portrait-header-bar {
+    left: 20px;
+    right: 20px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-card {
+    animation: none !important;
+    transform: none !important;
+  }
+  .portrait-ambient-glow,
+  .chip-beacon-pulse {
+    animation: none !important;
+  }
+  .hero-portrait-card:hover .portrait-actual-image {
+    transform: none !important;
+  }
+}
